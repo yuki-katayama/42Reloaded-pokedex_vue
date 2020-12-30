@@ -16,7 +16,7 @@ export default {
         labels: ['たいりょく', 'こうげき', 'ぼうぎょ', 'とくこう', 'とくぼう', 'すばやさ'],
         datasets: [
           {
-            label: 'ステータス',
+            label: 'ステータス-',
             data: this.statsData,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
