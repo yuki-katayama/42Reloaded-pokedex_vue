@@ -1,45 +1,61 @@
 <template>
 <div>
-    <router-link :to="{name: 'pokedex'}">ポケモン選択に戻る</router-link>
-    <div v-if="errored">{{Errmassage}}</div>
-
-    <div v-else>
-        <div v-if="loading">Loading...</div>
+    <div class="all-box">
+        <router-link :to="{name: 'pokedex'}" class="back">ポケモン選択に戻る</router-link>
+        <h1 v-if="errored" class="error">{{Errmassage}}</h1>
         <div v-else>
-            <div class="id">
-                <h2>ポケモンID</h2>
-                <p>{{detail.id}}</p>
-            </div>
-            <div class="name">
-                <h2>名前 </h2>
-                <p>{{detail.name}}</p>
-            </div>
-            <div class="abilities">
-                <h2>技</h2>
-                <div v-for="(abilities, index) in detail.abilities" :key="abilities.id">
-                    <p>{{index + 1}} : {{abilities.ability.name}}</p>
+            <h1 v-if="loading">Loading...</h1>
+            <div v-else>
+                <div class="id">
+                    <h2>ID: {{detail.id}}</h2>
                 </div>
-            </div>
-            <div class="picture">
-                <h2>画像</h2> <img :src="detail.image">
-            </div>
-            <div class="type">
-                <h2>タイプ: </h2>
-                <div v-for="(type, index) in detail.types" :key="type.id">
-                    <p>{{index + 1}} : {{type.type.name}}</p>
+                <div class="graph">
+                    <chart style="height: 300px; width: 300px;" :statsData="statsData"></chart>
                 </div>
-            </div>
-            <div class="stats">
-                <h2>ステータス</h2>
-                <div v-for="(stats) in detail.stats" :key="stats.id">
-                    <p>{{stats.stat.name}} : {{stats.base_stat}}</p>
+                <div class="name">
+                    <p>{{detail.name}}</p>
                 </div>
-            </div>
-            <div class="graph">
-                <chart  style="height: 300px; width: 300px;" :statsData="statsData"></chart>
+                <div class="image">
+                    <p>
+                        <img v-bind:src="detail.image" height="280">
+                    </p>
+                </div>
+                <br>
+                <div class="abilities">
+                    <table>
+                        <tr>
+                    <th>技</th>
+                    </tr>
+                    <div v-for="(abilities) in detail.abilities" :key="abilities.id">
+                        <tr>
+                        <td>{{abilities.ability.name}}</td>
+                        </tr>
+                    </div>
+                    </table>
+
+                </div>
+                <br>
+                <div class="type">
+                        <table>
+                            <tr>
+                    <th>タイプ: </th>
+                    </tr>
+                    <div v-for="(type) in detail.types" :key="type.id">
+                        <tr>
+                        <td>{{type.type.name}}</td>
+                            </tr>
+                    </div>
+                        </table>
+                </div>
             </div>
         </div>
     </div>
+    <div class="background-container">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/moon2.png" alt="" width="350">
+    </div>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="clouds"></div>
 </div>
 </template>
 
@@ -54,7 +70,7 @@ export default {
             //   require: true
         }
     },
-    components:{
+    components: {
         Chart,
     },
     data: function () {
@@ -89,8 +105,7 @@ export default {
         this.detail["abilities"] = pokedexAPI.abilities;
         this.detail["types"] = pokedexAPI.types;
         this.detail["stats"] = pokedexAPI.stats;
-        for(let i = 0; i < this.detail["stats"].length; i++)
-        {
+        for (let i = 0; i < this.detail["stats"].length; i++) {
             this.statsData.push(this.detail["stats"][i].base_stat);
         }
         this.loading = false
@@ -99,12 +114,3 @@ export default {
     }
 };
 </script>
-
-<style>
-div.graph {
-    position:absolute;
-    top: 0;
-    float: right;
-    height: 300;
-}
-</style>
