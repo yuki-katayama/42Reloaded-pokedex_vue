@@ -6,6 +6,7 @@
         <div v-else v-for="pokedex in pokedexList" :key="pokedex.id">
         <!-- <router-link to="/pokemon/:id">{{pokedex.name}}</router-link> -->
 		<router-link :to="{name: 'pokemon', params: {id: pokedex.id, object: pokedex}}">{{pokedex.name}}</router-link>
+        <img :src="pokedex.image">
         </div>
     </div>
 </div>
@@ -21,28 +22,32 @@ export default {
             Errmassage: '',
             loading: true,
             errored: false,
+            url: []
         };
     },
     methods: {},
     computed: {},
     mounted: async function () {
         let pokedexAPI;
-        await axios.get('https://pokeapi.co/api/v2/pokemon')
-            .then(response => pokedexAPI = response.data.results)
-            .catch(error => {
-                this.Errmassage = error
-                this.errored = true
-            })
-        if (this.errored) {
-            return
+        for (let i = 1; i < 300; i++) {
+            this.url.push("https://pokeapi.co/api/v2/pokemon/" + i);
         }
-        for (let i = 0; i < pokedexAPI.length; i++) {
-			this.pokedexList[pokedexAPI[i].name] = {}
-			this.pokedexList[pokedexAPI[i].name]["id"] = i + 1
-			this.pokedexList[pokedexAPI[i].name]["name"] = pokedexAPI[i].name
-			this.pokedexList[pokedexAPI[i].name]["url"] = pokedexAPI[i].url
-		}
-		console.log(this.pokedexList)
+        for (let i = 0; i < this.url.length; i++) {
+            await axios.get(this.url[i])
+                .then(response => pokedexAPI = response.data)
+                .catch(error => {
+                    this.Errmassage = error
+                    this.errored = true
+                })
+            if (this.errored) {
+                return
+            }
+            this.pokedexList[pokedexAPI.name] = {}
+            this.pokedexList[pokedexAPI.name]["name"] = pokedexAPI.name
+            this.pokedexList[pokedexAPI.name]["id"] = pokedexAPI.id
+            this.pokedexList[pokedexAPI.name]["image"] = pokedexAPI.sprites.front_shiny
+        }
+        console.log(this.pokedexList)
         this.loading = false
         return;
     }
