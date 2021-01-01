@@ -29,7 +29,7 @@ export default {
     computed: {},
     mounted: async function () {
         let pokedexAPI;
-        for (let i = 1; i < 300; i++) {
+        for (let i = 1; i < 450; i++) {
             this.url.push("https://pokeapi.co/api/v2/pokemon/" + i);
         }
         for (let i = 0; i < this.url.length; i++) {
@@ -45,7 +45,7 @@ export default {
             this.pokedexList[pokedexAPI.name] = {}
             this.pokedexList[pokedexAPI.name]["name"] = pokedexAPI.name
             this.pokedexList[pokedexAPI.name]["id"] = pokedexAPI.id
-            this.pokedexList[pokedexAPI.name]["image"] = pokedexAPI.sprites.front_shiny
+            this.pokedexList[pokedexAPI.name]["image"] = pokedexAPI.sprites.front_default
         }
         console.log(this.pokedexList)
         this.loading = false
