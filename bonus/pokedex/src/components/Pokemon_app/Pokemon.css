@@ -34,24 +34,54 @@
 }
 
 div.type {
-    float: left;
-}
-
-div.id{
 	/* float: left; */
 }
 
+div.text {
+  color: #fff;
+  padding: 30px;
+  font-size: 22px;
+  background: #14d424;
+  border: 2px dashed #F7F9CC;
+  border-radius: 10px;
+  box-shadow: 0 0 0 7px #14d424;
+  margin-top: 40px;
+  text-align: center;
+}
+
+div.id{
+  /* float: left; */
+  padding-left: 20px;
+  text-align: center;
+}
+
 div.abilities {
-    /* float: left; */
+	/* float: left; */
+}
+
+div.location {
+  color: blue;
+}
+
+div.location th{
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+div.location td{
+  width: 300px;
+}
+div.location table{
+  width: auto;
 }
 
 div.graph {
     float:right;
 	color: red;
-	padding-top: 90px;
-	padding-inline: 60px;
+	margin-top: 110px;
+	margin-right: 60px;
 	right: 0;
-    z-index: 4;
+	background-color: white;
 }
 
 div.name {
@@ -63,14 +93,16 @@ div.name {
   text-indent: 0.5em;
   letter-spacing: 0.5em;
   padding: 4px 8px;
-  margin-left: 2px;
+  margin-left: 60px;
+  margin-top: 20px;
   border-width: thin;
   border-style: solid;
   border-radius: 12px;
   text-shadow: 1px 1px 0 rgba(100%, 100%, 100%, 0.75);
-  width: 85%;
+  width: 770px;
   border-color: #393;
   box-shadow: inset 0 0 0 3px rgba(0%, 50%, 0%, 0.25);
+  background-color: white;
 }
 div.name p{
 	padding-left: 36%;
@@ -103,11 +135,11 @@ div.image {
     bottom: 0;
     z-index: 1;
     
-    -moz-animation:move-background 70s linear infinite;
-  -ms-animation:move-background 70s linear infinite;
-  -o-animation:move-background 70s linear infinite;
-  -webkit-animation:move-background 70s linear infinite;
-  animation:move-background 70s linear infinite;
+    -moz-animation:move-background 10s linear infinite;
+  -ms-animation:move-background 10s linear infinite;
+  -o-animation:move-background 10s linear infinite;
+  -webkit-animation:move-background 10s linear infinite;
+  animation:move-background 10s linear infinite;
   
 }
 
@@ -122,11 +154,11 @@ div.image {
     bottom: 0;
     z-index: 3;
 
-   -moz-animation:move-background 150s linear infinite;
-  -ms-animation:move-background 150s linear infinite;
-  -o-animation:move-background 150s linear infinite;
-  -webkit-animation:move-background 150s linear infinite;
-  animation:move-background 150s linear infinite;
+   -moz-animation:move-background 20s linear infinite;
+  -ms-animation:move-background 20s linear infinite;
+  -o-animation:move-background 20s linear infinite;
+  -webkit-animation:move-background 20s linear infinite;
+  animation:move-background 20s linear infinite;
 }
 .background-container{
   position: fixed;
@@ -139,26 +171,29 @@ div.all-box{
     margin:2em 0;
     position: relative;
     margin: 80px;
-    border: solid 2px green;
+    border: solid 1px rgb(219, 21, 38);
 	border-radius: 3px 0 3px 0;
 	background-color: #EEFFFF;
+	background-image: url("./PokemonBackground.png");
+	background-size:cover;
     width: 900px;
-    height: 600px;
+    height: 760px;
     z-index: 4;
 }
 
 .back{
 	position: relative;
 	padding: 0.2em 0.5em;
-	background: linear-gradient(to right, rgb(0, 124, 111), #7fffd4);
+	background: linear-gradient(to right, rgb(218, 24, 10), #ffa703);
 	color: white;
 	font-weight: lighter;
 	box-shadow: 0 0 4px rgba(0, 0, 0, 0.56);
-	font-size: 30px;
+  font-size: 30px;
+  text-decoration: none;
 }
 
 .back:before {
-	content: '●';
+	content: '✨';
 	color: white;
 	margin-right: 8px;
   }
@@ -172,22 +207,23 @@ table{
   table th{
 	text-align: center;
 	color:white;
-	background: linear-gradient(#829ebc,#225588);
-	border-left: 1px solid #3c6690;
-	border-top: 1px solid #3c6690;
-	border-bottom: 1px solid #3c6690;
+	background: linear-gradient(rgb(0, 124, 111), #7fffd4);
+	border-left: 1px solid #7fffc4;
+	border-top: 1px solid #7fffc4;
+	border-bottom: 1px solid #7fffc4;
 	box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
 	padding: 10px 0;
   }
 
   table td{
-	text-align: center;
+  text-align: center;
+  border-top: 1px solid #a8b7c5;
 	border-left: 1px solid #a8b7c5;
 	border-bottom: 1px solid #a8b7c5;
-	border-top:none;
 	box-shadow: 0px -3px 5px 1px #eee inset;
 	width: 300px;
-	padding: 10px 0;
+	padding: 10px ;
+	background-color: white;
   }
 
   table td:last-child{
